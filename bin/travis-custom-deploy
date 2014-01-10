@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby
+
+require 'travis-custom-deploy'
+
+def usage
+  puts 'Usage: travis-custom-deploy TRANSFER_TYPE FILES...'
+end
+
+if ARGV.count < 2
+  usage 
+end
+
+transfer = ARGV[0]
+files = ARGV[1..-1]
+
+host = ENV['DEPLOY_HOST']
+username = ENV['DEPLOY_USERNAME']
+password = ENV['DEPLOY_PASSWORD']
+remotedir = ENV['DEPLOY_REMOTEDIR']
+
+transfer_opts = {
+  :type => transfer,
+  :host => ENV['DEPLOY_HOST'],
+  :username => ENV['DEPLOY_USERNAME'],
+  :password => ENV['DEPLOY_PASSWORD'],
+  :remotedir => ENV['DEPLOY_REMOTEDIR']
+}
+
+d = TravisCustomDeploy::Deployment.new(transfer_opts, files)
+d.deploy
