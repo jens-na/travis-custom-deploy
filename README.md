@@ -21,6 +21,21 @@ env:
 
 after_success: travis-custom-deploy sftp _site/
 ```
+
+#### Services
+There are predefined services available. For example if you want to deploy a [Jekyll](https://github.com/jekyll/jekyll) page you can write:
+
+```yml
+after_success: travis-custom-deploy sftp service:jekyll
+```
+
+Services currently availble:
+```
+Service  File
+-------- -------
+jekyll   _site/
+```
+
 License and Copyright
 =====================
 Licensed under the MIT license. 
