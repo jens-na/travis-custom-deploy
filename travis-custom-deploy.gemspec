@@ -5,6 +5,7 @@ Gem::Specification.new do |s|
   s.name        = "travis-custom-deploy"
   s.version     = TravisCustomDeploy::VERSION
   s.platform    = Gem::Platform::RUBY
+  s.licenses    = ['MIT']
   s.authors     = ["Jens Nazarenus"]
   s.email       = ["me@jens-na.de"]
   s.homepage    = "https://github.com/jens-na/travis-custom-deploy"
