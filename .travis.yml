@@ -1,7 +1,16 @@
 language: ruby
 cache: bundler
 before_install:
-  - gem install bundler
+- gem install bundler
 rvm:
-  - 2.1.0
+- 2.1.0
+- 2.0.0
 script: bundle exec rake
+deploy:
+  provider: rubygems
+  api_key:
+    secure: fogw9FFH6muJHIu9/soA87R+YQJo+Zns4xS1zFR2XhkkAS92d/OspqSd3mqTtTzHrZH1yyLQOmhnR7hS1gsukPhXbVyUi07wp6DaZ3gH7zMJwkNnZgKqa0z1GscKAgzSu02f2hAIHs7Vh92RaQ90qp3u6oPATxKdj5tGm8oRZUo=
+  gem: travis-custom-deploy
+  on:
+    tags: true
+    repo: jens-na/travis-custom-deploy
