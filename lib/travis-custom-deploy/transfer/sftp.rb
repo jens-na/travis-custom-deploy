@@ -17,7 +17,6 @@ module TravisCustomDeploy
         Net::SFTP.start(@options['host'], @options['username'], 
                         :password => @options['password']) do |sftp|
           for e in @files
-            require 'pry'; binding.pry
             sftp.upload!(e, "#{@remotedir}/")
           end
         end
