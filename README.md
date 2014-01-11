@@ -1,8 +1,7 @@
-travis-custom-deploy [![Gem Version](https://badge.fury.io/rb/travis-custom-deploy.png)](http://badge.fury.io/rb/travis-custom-deploy)  [![Build Status](https://travis-ci.org/jens-na/travis-custom-deploy.png?branch=master)](https://travis-ci.org/jens-na/travis-custom-deploy)
+travis-custom-deploy [![Gem Version](https://badge.fury.io/rb/travis-custom-deploy.png)](http://badge.fury.io/rb/travis-custom-deploy) 
 ====================
-
-
-
+ [![Build Status](https://travis-ci.org/jens-na/travis-custom-deploy.png?branch=master)](https://travis-ci.org/jens-na/travis-custom-deploy) [![Coverage Status](https://coveralls.io/repos/jens-na/travis-custom-deploy/badge.png?branch=master)](https://coveralls.io/r/jens-na/travis-custom-deploy?branch=master)
+ [![Dependency Status](https://gemnasium.com/jens-na/travis-custom-deploy.png)](https://gemnasium.com/jens-na/travis-custom-deploy)
 
 Deploy your ruby based applications on your own server.
 
