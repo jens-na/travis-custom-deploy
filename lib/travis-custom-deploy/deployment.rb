@@ -2,39 +2,33 @@ module TravisCustomDeploy
 
   class Deployment
 
-    attr_reader :remoteopts
+    attr_reader :options
     attr_reader :files
 
-    def initialize(remoteopts, files)
-      check_remoteopts(remoteopts)
-      @remoteopts = remoteopts
+    # Initializes a new deployment
+    #
+    # remteopts - the options to connect to the remote server
+    # files - the files to transfer
+    def initialize(transfer_type, options, files)
+      raise ArgumentError, 'transfer type must not be nil' if transfer_type.nil?
       @files = files
       check_services(@files[0])
-      @transfer = get_transfer(remoteopts[:type])
+      @options = options
+      @transfer = get_transfer(transfer_type)
     end
 
-    # Actually start the deployment
+    # Starts the deployment
     def deploy
       @transfer.transfer
     end
 
-    # Check if the remoteopts are valid
-    #
-    # opts - the remote opts to check
-    def check_remoteopts(opts)
-      raise ArgumentError, 'host must not be nil' if opts[:host].nil?
-      raise ArgumentError, 'username must not be nil' if opts[:username].nil?
-      raise ArgumentError, 'password must not be nil' if opts[:password].nil?
-      raise ArgumentError, 'transfer type must not be nil' if opts[:type].nil?
-    end
-
-    # Create an instance for the transfer type and return it 
+    # Creates an instance for the transfer type and return it 
     #
     # type - the transfer type like sftp, ftp, etc.
     def get_transfer(type)
       type = type[0].upcase + type[1..-1]
       try_require(type)
-      Transfer.const_get(type).new(@remoteopts, @files) 
+      Transfer.const_get(type).new(@options, @files) 
     end
 
     # Try requiring a transfer type class 
@@ -46,7 +40,7 @@ module TravisCustomDeploy
     end
     protected :try_require
 
-    # check if the first file matches service:<service-name>
+    # Check if the first file matches service:<service-name>
     # and try to determine the files based on the service.
     #
     # first_file the first file given

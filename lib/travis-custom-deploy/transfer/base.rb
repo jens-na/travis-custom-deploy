@@ -4,13 +4,13 @@ module TravisCustomDeploy
 
     class Base
 
-      attr_reader :remoteopts
+      attr_reader :options
       attr_reader :files
 
-      def initialize(remoteopts, files)
-        @remoteopts = remoteopts
+      def initialize(options, files)
+        @options = options
         @files = files
-        prepare_remotedir
+        check_options(options)
       end
 
       # The method which needs to be implemented by subclasses
@@ -19,12 +19,13 @@ module TravisCustomDeploy
         raise NotImplementedError 
       end
 
-      # Prepares the remote directory (remote trailing slash)
-      def prepare_remotedir
-        @remotedir = @remoteopts[:remotedir]
-        @remotedir = "" if @remotedir.nil?
-        @remotedir = @remotedir[0..-2] if @remotedir[-1] == "/"
+      # The method which needs to be implemented by subclasses
+      # to check if the remote options are sufficient for the
+      # defined transfer type
+      def check_options
+        raise NotImplementedError
       end
+
     end
   end
 end

@@ -6,25 +6,26 @@ def usage
   puts 'Usage: travis-custom-deploy TRANSFER_TYPE FILES...'
 end
 
+# Returns a list of read environment variables in a hash based
+# on options.rb. The hash may be used as parameter for deployment.rb.
+def get_env_vars(transfer_type)
+  envs = TravisCustomDeploy::Options.get_options(transfer_type)
+  options = {}
+  for e in envs
+    value = ENV['DEPLOY_' + e.upcase]
+    options[e] = value
+  end
+  options
+end
+
 if ARGV.count < 2
   usage 
 end
 
-transfer = ARGV[0]
+transfer_type = ARGV[0]
 files = ARGV[1..-1]
 
-host = ENV['DEPLOY_HOST']
-username = ENV['DEPLOY_USERNAME']
-password = ENV['DEPLOY_PASSWORD']
-remotedir = ENV['DEPLOY_REMOTEDIR']
+options = get_env_vars(transfer_type)
 
-transfer_opts = {
-  :type => transfer,
-  :host => ENV['DEPLOY_HOST'],
-  :username => ENV['DEPLOY_USERNAME'],
-  :password => ENV['DEPLOY_PASSWORD'],
-  :remotedir => ENV['DEPLOY_REMOTEDIR']
-}
-
-d = TravisCustomDeploy::Deployment.new(transfer_opts, files)
+d = TravisCustomDeploy::Deployment.new(transfer_type, options, files)
 d.deploy

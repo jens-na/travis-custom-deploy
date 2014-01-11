@@ -5,17 +5,16 @@ class TestDeployment < Test::Unit::TestCase
   context "A deployment" do
     setup do
       @opts = {
-        :type => 'sftp',
-        :host => 'example.org',
-        :username => 'username',
-        :password => 'password',
-        :remotedir => '/public/'
+        'host' => 'example.org',
+        'username' => 'username',
+        'password' => 'password',
+        'remotedir' => '/public/'
       }
     end
 
     context "with files" do
       setup do
-        @deployment = Deployment.new(@opts, ['foo', 'bar', 'foo2'])
+        @deployment = Deployment.new('sftp', @opts, ['foo', 'bar', 'foo2'])
       end
 
       should "return file names" do
@@ -25,7 +24,7 @@ class TestDeployment < Test::Unit::TestCase
 
     context "with service identifier as first file name" do
       setup do
-        @deployment = Deployment.new(@opts, ['service:jekyll'])
+        @deployment = Deployment.new('sftp', @opts, ['service:jekyll'])
       end
 
       should "return file names of service" do
