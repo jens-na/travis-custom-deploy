@@ -9,19 +9,20 @@ Deploy your ruby based applications on your own server.
 
 Configuration
 -------------
-You need to define environment variables with Travis. `travis-custom-deploy` will use those to 
-deploy your application.
+Add the gem to your Gemfile or gemspec.
 
-Example:
-```yml
-env:
-  global:
-    - "CUSTOM_DEPLOY_HOST=host"
-    - "CUSTOM_DEPLOY_USER=user"
-    - "CUSTOM_DEPLOY_PASSWORD=password"
-    - "CUSTOM_DEPLOY_REMOTEDIR=/path/to/"
+```ruby
+gem "travis-custom-deploy", "~> 0.0.4"
+```
+To use travis-custom-deploy with Travis-CI you need to define environment variables. I recommend
+to use [secure environment variables](http://about.travis-ci.org/docs/user/build-configuration/#Secure-environment-variables) with Travis-CI
 
-after_success: travis-custom-deploy sftp _site/
+The best way to do that is to use travis gem:
+```ruby
+gem install travis
+cd my_project
+travis encrypt DEPLOY_HOST="your-hostname.com" --add
+...
 ```
 
 #### Services
