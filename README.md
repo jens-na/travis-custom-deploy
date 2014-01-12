@@ -61,7 +61,7 @@ Necessary environment variables:
 
 Example:
 ```
-after_success: bundle exec travis-custom-deploy sftp service:jekyll
+after_success: bundle exec travis-custom-deploy sftp files/
 ```
 
 Services
