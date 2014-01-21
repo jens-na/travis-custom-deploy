@@ -12,7 +12,7 @@ Configuration
 Add the gem to your Gemfile or gemspec.
 
 ```ruby
-gem "travis-custom-deploy", "~> 0.0.4"
+gem "travis-custom-deploy", "~> 0.0.5"
 ```
 To use travis-custom-deploy with Travis-CI you need to define environment variables. I recommend
 to use [secure environment variables](http://about.travis-ci.org/docs/user/build-configuration/#Secure-environment-variables) with Travis-CI. The best way to do that is to use travis gem:
