@@ -19,9 +19,9 @@ if ENV["TRAVIS"] == "true"
   require 'coveralls/rake/task'
   Coveralls::RakeTask.new
 
-  task :default => [:test, :features, 'coveralls:push']
+  task :default => [:test, 'coveralls:push']
 else
-  task :default => [:test, :features]
+  task :default => [:test]
 end
 
 # << test
@@ -39,20 +39,4 @@ Rake::RDocTask.new do |rdoc|
   rdoc.title = "#{name} #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
-end
-
-# << features
-begin
-  require 'cucumber/rake/task'
-  Cucumber::Rake::Task.new(:features) do |t|
-    t.profile = "travis"
-  end
-  Cucumber::Rake::Task.new(:"features:html", "Run Cucumber features and produce HTML output") do |t|
-    t.profile = "html_report"
-  end
-rescue LoadError
-  desc 'Cucumber rake task not available'
-  task :features do
-    abort 'Cucumber rake task is not available. Be sure to install cucumber as a gem or plugin'
-  end
 end
