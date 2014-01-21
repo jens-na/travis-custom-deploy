@@ -2,6 +2,7 @@
 
 require 'travis-custom-deploy'
 
+# The usage for the binary of travis-custom-deploy
 def usage
   puts 'Usage: travis-custom-deploy TRANSFER_TYPE FILES...'
 end

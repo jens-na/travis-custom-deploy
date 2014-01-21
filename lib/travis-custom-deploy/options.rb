@@ -34,6 +34,11 @@ module TravisCustomDeploy
 
   class Options
 
+    # Returns the options for the corresponding transfer type
+    #
+    # transfer_type - the transfer type
+    #
+    # Returns an array of options, which must be available
     def self.get_options(transfer_type)
       OPTIONS.each do |k,v|
         if k == transfer_type
