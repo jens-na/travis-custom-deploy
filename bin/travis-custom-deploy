@@ -5,6 +5,7 @@ require 'travis-custom-deploy'
 # The usage for the binary of travis-custom-deploy
 def usage
   puts 'Usage: travis-custom-deploy TRANSFER_TYPE FILES...'
+  exit 1
 end
 
 # Returns a list of read environment variables in a hash based
@@ -21,6 +22,12 @@ end
 
 if ARGV.count < 2
   usage 
+end
+
+# do not deploy if a pull request is tested
+unless TravisCustomDeploy::Options.deploy_allowed?
+  puts 'Deployment not allowed for pull requests.'
+  exit 0
 end
 
 transfer_type = ARGV[0]

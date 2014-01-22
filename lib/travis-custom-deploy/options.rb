@@ -47,5 +47,18 @@ module TravisCustomDeploy
       end
       nil
     end
+
+    # Returns true if travis-custom-deploy is not invoked as part of a pull
+    # request. The deployment would fail anyway if secure environment
+    # variables are used.
+    #
+    # Returns true if the deployment is allowed.
+    def self.deploy_allowed?
+      allowed = ENV['TRAVIS_PULL_REQUEST']
+      unless allowed.nil?
+        return false if allowed != "false"
+      end
+      true
+    end
   end
 end
