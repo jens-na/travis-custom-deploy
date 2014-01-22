@@ -14,9 +14,7 @@ module TravisCustomDeploy
       end
 
       def transfer
-        Net::SFTP.start(@options['host'], @options['username'], 
-                        :password => @options['password']) do |sftp|
-
+        Net::SFTP.start(@options['host'], @options['username'], :password => @options['password']) do |sftp|
           for e in @files
             if File.directory?(e)
               send_dir(sftp, e, @remotedir)
@@ -30,7 +28,6 @@ module TravisCustomDeploy
         raise ArgumentError, 'userna)e must not be nil' if options['username'].nil?
         raise ArgumentError, 'password must not be nil' if options['password'].nil?
       end
-
 
       # Sends a directory to the remote server with the given parameters
       #
