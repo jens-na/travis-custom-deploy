@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.email       = ["me@jens-na.de"]
   s.homepage    = "https://github.com/jens-na/travis-custom-deploy"
   s.summary     = %q{Travis custom deployment gem}
-  s.description = %q{Deploy your ruby based applications to your own servers}
+  s.description = %q{Deploy static files to your own servers with Travis-CI}
   
   s.add_runtime_dependency('net-sftp', "~> 2.1.2")
   

@@ -5,7 +5,7 @@ travis-custom-deploy [![Gem Version](https://badge.fury.io/rb/travis-custom-depl
  [![Code Climate](https://codeclimate.com/github/jens-na/travis-custom-deploy.png)](https://codeclimate.com/github/jens-na/travis-custom-deploy)
  [![Dependency Status](https://gemnasium.com/jens-na/travis-custom-deploy.png)](https://gemnasium.com/jens-na/travis-custom-deploy)
 
-Deploy your ruby based applications with [Travis-CI](https://travis-ci.org/) on your own server.
+Deploy static files with [Travis-CI](https://travis-ci.org/) to your own server.
 
 Configuration
 -------------
